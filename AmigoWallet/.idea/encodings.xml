@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/Get-Cashback/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Get-Cashback/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Load-Wallet/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Load-Wallet/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ManageUsers/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ManageUsers/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Pay-Bills/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Pay-Bills/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Provide_Offers/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Provide_Offers/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Transfer-Money/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Transfer-Money/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/View-Transactions/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/View-Transactions/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/manage-users/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

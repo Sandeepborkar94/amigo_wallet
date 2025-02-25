@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "manage.users.service.url",
+  "type": "java.lang.String",
+  "description": "A description for 'manage.users.service.url'"
+}]}
