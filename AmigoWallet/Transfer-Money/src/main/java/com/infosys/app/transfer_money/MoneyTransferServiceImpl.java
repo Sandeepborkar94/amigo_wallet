@@ -28,12 +28,12 @@ public class MoneyTransferServiceImpl implements MoneyTransferService {
     @Transactional
     public MoneyTransferResponseDTO transferMoney(MoneyTransferRequestDTO request) {
         try {
-            // Validate Input
-            if (request.getAmount() <= 0) {
+
+        	if (request.getAmount() <= 0) {
                 return new MoneyTransferResponseDTO("FAILURE", "Amount must be greater than 0");
             }
 
-            // Fetch sender's wallet
+            
             Optional<Wallet> senderWalletOpt = walletRepository.findByUserId(request.getSenderId());
             if (senderWalletOpt.isEmpty()) {
                 return new MoneyTransferResponseDTO("FAILURE", "Sender wallet not found");
@@ -41,7 +41,6 @@ public class MoneyTransferServiceImpl implements MoneyTransferService {
 
             Wallet senderWallet = senderWalletOpt.get();
 
-            // Check if sender has sufficient balance
             if (senderWallet.getBalance() < request.getAmount()) {
                 return new MoneyTransferResponseDTO("FAILURE", "Insufficient balance");
             }

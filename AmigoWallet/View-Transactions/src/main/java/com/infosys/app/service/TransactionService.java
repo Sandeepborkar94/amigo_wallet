@@ -57,10 +57,8 @@ public class TransactionService {
         if (transfers.getBody() != null) allTransactions.addAll(transfers.getBody());
         if (bills.getBody() != null) allTransactions.addAll(bills.getBody());
 
-        // Sort transactions by date (descending order)
         allTransactions.sort(Comparator.comparing(TransactionDTO::getTransactionDateTime).reversed());
 
-        // Pagination
         int start = Math.min(page * size, allTransactions.size());
         int end = Math.min(start + size, allTransactions.size());
         List<TransactionDTO> paginatedTransactions = allTransactions.subList(start, end);

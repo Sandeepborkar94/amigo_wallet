@@ -23,19 +23,16 @@ public class OfferController {
         this.offerService = offerService;
     }
 
-    // Add new offer (Admin only)
     @PostMapping("/add/{adminId}")
     public ResponseEntity<Offer> addOffer(@PathVariable Long adminId, @RequestBody Offer offer) {
         return ResponseEntity.ok(offerService.addOffer(offer, adminId));
     }
 
-    // Get all offers
     @GetMapping("/all")
     public ResponseEntity<List<Offer>> getAllOffers() {
         return ResponseEntity.ok(offerService.getAllOffers());
     }
 
-    // Get offers by region (Future support)
     @GetMapping("/region/{region}")
     public ResponseEntity<List<Offer>> getOffersByRegion(@PathVariable String region) {
         return ResponseEntity.ok(offerService.getOffersByRegion(region));

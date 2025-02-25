@@ -31,7 +31,6 @@ public class CashbackServiceImpl implements CashbackService {
         Double billAmount = request.getBillAmount();
         String utilityType = request.getUtilityType();
 
-        // Step 1: Verify user from Manage Users (port 8000)
         String userUrl = "http://localhost:8000/api/users/" + userId;
         ResponseEntity<UserDTO> userResponse = restTemplate.getForEntity(userUrl, UserDTO.class);
         if (!userResponse.getStatusCode().is2xxSuccessful() || userResponse.getBody() == null) {
@@ -39,7 +38,6 @@ public class CashbackServiceImpl implements CashbackService {
         }
         log.info("User verified: {}", userResponse.getBody());
 
-        // Step 2: Get cashback offer from Provide Offers service (port 8001)
         String offerUrl = "http://localhost:8001/api/offers/cashback?utilityType=" + utilityType;
         ResponseEntity<CashbackOfferDTO> offerResponse = restTemplate.getForEntity(offerUrl, CashbackOfferDTO.class);
         Double cashbackPercentage = 0.0;
@@ -54,10 +52,8 @@ public class CashbackServiceImpl implements CashbackService {
         Double cashbackAmount = billAmount * (cashbackPercentage / 100.0);
         log.info("Calculated cashback amount: {}", cashbackAmount);
 
-        // Step 4: Credit cashback to user's wallet via Load Wallet service (port 8002)
-        // We assume there's an endpoint for crediting cashback.
+       
         String walletUrl = "http://localhost:8002/api/wallet/cashback";
-        // Create a payload; here we use a simple map.
         java.util.Map<String, Object> walletPayload = new java.util.HashMap<>();
         walletPayload.put("userId", userId);
         walletPayload.put("amount", cashbackAmount);
@@ -73,9 +69,7 @@ public class CashbackServiceImpl implements CashbackService {
             return new CashbackResponseDTO("Failed to credit cashback to wallet", cashbackAmount, 0.0);
         }
 
-        // Optionally, you can record the cashback transaction via the View Transactions service (port 8005)
-        // (Stubbed code can be added here)
-
+       
         return new CashbackResponseDTO("Cashback credited successfully", cashbackAmount, newWalletBalance);
     }
 }

@@ -41,7 +41,6 @@ public class WalletServiceImpl implements WalletService
 			UserDTO user = restTemplate.getForObject(userApiUrl, UserDTO.class);
 			LOGGER.info("User fetched: {}", user);
 
-			// ✅ If user is null, return an error message
 			if (user == null) {
 				LOGGER.error("User not found: {}", request.getUserId());
 				return "User not found. Wallet top-up failed.";
