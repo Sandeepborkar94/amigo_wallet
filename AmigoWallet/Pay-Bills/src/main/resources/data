@@ -1,0 +1,20 @@
+INSERT INTO merchants (name, utility_type, wallet_id) VALUES ('Tata Power', 'Electricity', 2);
+INSERT INTO merchants (name, utility_type, wallet_id) VALUES ('Airtel', 'Mobile', 3);
+INSERT INTO merchants (name, utility_type, wallet_id) VALUES ('Reliance Jio', 'Broadband', 4);
+
+INSERT INTO wallets (user_id, balance) VALUES (1, 500); -- Customer Wallet
+INSERT INTO wallets (user_id, balance) VALUES (2, 1000); -- Tata Power
+INSERT INTO wallets (user_id, balance) VALUES (3, 800); -- Airtel
+INSERT INTO wallets (user_id, balance) VALUES (4, 600); -- Jio
+
+POST http://localhost:8004/api/bills/pay
+
+Content-Type: application/json
+{
+  "userId": 1,
+  "merchantId": 2
+}
+
+{
+  "message": "Bill Paid Successfully! Amount: $134 | Reward Points Earned: 13"
+}

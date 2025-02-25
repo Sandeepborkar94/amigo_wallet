@@ -27,7 +27,8 @@
 		<module>View-Transactions</module>
 		<module>Get-Cashback</module>
         <module>manage-users</module>
-    </modules>
+        <module>CashBack</module>
+	</modules>
 
 	<properties>
 		<maven.compiler.source>17</maven.compiler.source>
