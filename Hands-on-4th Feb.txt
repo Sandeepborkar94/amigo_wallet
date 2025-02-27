@@ -1,0 +1,207 @@
+Hands On 4th Feb: 
+
+1: import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+public class Employee {
+    String empName;
+    int empId;
+    Passport passport;
+    // Assume the getters and setters for the variables are provided
+
+    public Optional<Passport> getPassport() {
+        return Optional.ofNullable(passport);
+    }
+}
+
+public class Passport {
+    int passportNo;
+    // Assume the getters and setters for passportNo are provided
+
+    public int getPassportNo() {
+        return passportNo;
+    }
+}
+
+public class TeamLead {
+    public List<Integer> getPassportNumbers(List<Employee> employees) {
+        return employees.stream()
+                .map(Employee::getPassport)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .map(Passport::getPassportNo)
+                .collect(Collectors.toList());
+    }
+
+    public static void main(String[] args) {
+        // Example usage
+        Employee emp1 = new Employee();
+        emp1.empName = "John";
+        emp1.empId = 1;
+        emp1.passport = new Passport();
+        emp1.passport.passportNo = 123456;
+
+        Employee emp2 = new Employee();
+        emp2.empName = "Jane";
+        emp2.empId = 2;
+        emp2.passport = null; // No passport
+
+        List<Employee> employees = List.of(emp1, emp2);
+        TeamLead teamLead = new TeamLead();
+        List<Integer> passportNumbers = teamLead.getPassportNumbers(employees);
+
+        System.out.println(passportNumbers); // Output: [123456]
+    }
+}
+
+2: public class DemoObjectMethods implements Cloneable {
+    private String name;
+    private int id;
+
+    public DemoObjectMethods(String name, int id) {
+        this.name = name;
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "DemoObjectMethods{name='" + name + "', id=" + id + "}";
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode() + id;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        DemoObjectMethods that = (DemoObjectMethods) obj;
+        return id == that.id && name.equals(that.name);
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        try {
+            System.out.println("Finalize method called for " + this);
+        } finally {
+            super.finalize();
+        }
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+
+    public static void main(String[] args) {
+        DemoObjectMethods obj1 = new DemoObjectMethods("Alice", 1);
+        DemoObjectMethods obj2 = new DemoObjectMethods("Bob", 2);
+        DemoObjectMethods obj3 = new DemoObjectMethods("Alice", 1);
+
+        // toString() method
+        System.out.println("obj1: " + obj1.toString());
+        System.out.println("obj2: " + obj2.toString());
+
+        // hashCode() method
+        System.out.println("obj1 hashCode: " + obj1.hashCode());
+        System.out.println("obj2 hashCode: " + obj2.hashCode());
+
+        // equals() method
+        System.out.println("obj1 equals obj2: " + obj1.equals(obj2));
+        System.out.println("obj1 equals obj3: " + obj1.equals(obj3));
+
+        // clone() method
+        try {
+            DemoObjectMethods obj4 = (DemoObjectMethods) obj1.clone();
+            System.out.println("obj4 (clone of obj1): " + obj4.toString());
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+
+        // finalize() method
+        obj1 = null;
+        obj2 = null;
+        obj3 = null;
+        System.gc(); // Requesting JVM to call finalize method
+    }
+}
+
+3: public final class ImmutableClass {
+    private final String name;
+    private final int age;
+
+    public ImmutableClass(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+}
+
+4: import java.util.Scanner;
+
+public class DecodeString {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String encoded = scanner.nextLine();
+        scanner.close();
+        
+        String decoded = decode(encoded);
+        System.out.println(decoded);
+    }
+
+    public static String decode(String encoded) {
+        int length = encoded.length();
+        char[] decoded = new char[length];
+        int left = 0, right = length - 1;
+        
+        for (int i = length - 1; i >= 0; i--) {
+            if (i % 2 == 0) {
+                decoded[left++] = encoded.charAt(i);
+            } else {
+                decoded[right--] = encoded.charAt(i);
+            }
+        }
+        
+        return new String(decoded);
+    }
+}
+
+5: import java.util.Scanner;
+
+public class MajorityElement {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+        scanner.close();
+
+        String[] elements = input.split(",");
+        int[] nums = new int[elements.length];
+        for (int i = 0; i < elements.length; i++) {
+            nums[i] = Integer.parseInt(elements[i].trim());
+        }
+
+        int majorityElement = findMajorityElement(nums);
+        System.out.println(majorityElement);
+    }
+
+    public static int findMajorityElement(int[] nums) {
+        int count = 0, candidate = 0;
+        for (int num : nums) {
+            if (count == 0) {
+                candidate = num;
+            }
+            count += (num == candidate) ? 1 : -1;
+        }
+        return candidate;
+    }
+}

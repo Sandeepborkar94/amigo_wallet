@@ -1,0 +1,268 @@
+Hands-on 3rd Feb
+
+1: import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+class Element {
+    int atomicNumber;
+    String name;
+    int electronsInOuterShell;
+
+    Element(int atomicNumber, String name, int electronsInOuterShell) {
+        this.atomicNumber = atomicNumber;
+        this.name = name;
+        this.electronsInOuterShell = electronsInOuterShell;
+    }
+
+    @Override
+    public String toString() {
+        return atomicNumber + ", " + name + ", " + electronsInOuterShell;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        List<Element> elements = new ArrayList<>();
+        elements.add(new Element(9, "Fluorine", 7));
+        elements.add(new Element(17, "Chlorine", 7));
+        elements.add(new Element(8, "Oxygen", 6));
+        elements.add(new Element(6, "Carbon", 4));
+        elements.add(new Element(1, "Hydrogen", 1));
+
+        Collections.sort(elements, new Comparator<Element>() {
+            @Override
+            public int compare(Element e1, Element e2) {
+                if (e1.atomicNumber != e2.atomicNumber) {
+                    return Integer.compare(e1.atomicNumber, e2.atomicNumber);
+                } else if (e1.electronsInOuterShell != e2.electronsInOuterShell) {
+                    return Integer.compare(e1.electronsInOuterShell, e2.electronsInOuterShell);
+                } else {
+                    return e1.name.compareTo(e2.name);
+                }
+            }
+        });
+
+        for (Element element : elements) {
+            System.out.println(element);
+        }
+    }
+}
+
+2: enum Grade {
+    A, B, C, D, E
+}
+
+4: class Student {
+    private int studentId;
+    private String name;
+    private Grade grade;
+    private int scholarshipAmount;
+    private int totalMarks;
+
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setTotalMarks(int totalMarks) {
+        this.totalMarks = totalMarks;
+    }
+
+    public int getStudentId() {
+        return studentId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Grade getGrade() {
+        return grade;
+    }
+
+    public int getScholarshipAmount() {
+        return scholarshipAmount;
+    }
+
+    public void calculateGrade() {
+        if (totalMarks >= 250) {
+            grade = Grade.A;
+        } else if (totalMarks >= 200 && totalMarks < 250) {
+            grade = Grade.B;
+        } else if (totalMarks >= 175 && totalMarks < 200) {
+            grade = Grade.C;
+        } else if (totalMarks >= 150 && totalMarks < 175) {
+            grade = Grade.D;
+        } else {
+            grade = Grade.E;
+        }
+    }
+
+    public void calculateScholarshipAmount() {
+        switch (grade) {
+            case A:
+                scholarshipAmount = 5000;
+                break;
+            case B:
+                scholarshipAmount = 4000;
+                break;
+            case C:
+                scholarshipAmount = 3000;
+                break;
+            case D:
+                scholarshipAmount = 2000;
+                break;
+            default:
+                scholarshipAmount = 0;
+        }
+    }
+}
+
+public class EnumExercise {
+    public static void main(String[] args) {
+        Student s1 = new Student();
+        s1.setStudentId(1000);
+        s1.setName("alvin");
+        s1.setTotalMarks(280);
+        s1.calculateGrade();
+        s1.calculateScholarshipAmount();
+        System.out.println("Student Details");
+        System.out.println("Student Id: " + s1.getStudentId());
+        System.out.println("Student Name: " + s1.getName());
+        System.out.println("Student Grade: " + s1.getGrade());
+        System.out.println("Scholarship Amount: " + s1.getScholarshipAmount());
+    }
+}
+
+
+3: AfterSale Interface
+public interface AfterSale {
+    void chargeOnDelivery();
+}
+Product Class
+public class Product {
+    private String name;
+    private double price;
+
+    public Product(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+}
+Customer Class
+import java.util.List;
+
+public abstract class Customer implements AfterSale {
+    private List<Product> products;
+
+    public Customer(List<Product> products) {
+        this.products = products;
+    }
+
+    public double calculatePurchaseAmount() {
+        double totalAmount = 0;
+        for (Product product : products) {
+            totalAmount += product.getPrice();
+        }
+        return totalAmount;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+}
+RegularCustomer Class
+import java.util.List;
+
+public class RegularCustomer extends Customer {
+    public RegularCustomer(List<Product> products) {
+        super(products);
+    }
+
+    @Override
+    public void chargeOnDelivery() {
+        System.out.println("Charge on delivery for regular customer.");
+    }
+}
+PrivilegedCustomer Class
+import java.util.List;
+
+public class PrivilegedCustomer extends RegularCustomer {
+    public PrivilegedCustomer(List<Product> products) {
+        super(products);
+    }
+
+    @Override
+    public void chargeOnDelivery() {
+        System.out.println("Charge on delivery for privileged customer.");
+    }
+
+    public double discount() {
+        return 0.05; // 5% discount
+    }
+
+    @Override
+    public double calculatePurchaseAmount() {
+        double totalAmount = super.calculatePurchaseAmount();
+        double discountAmount = totalAmount * discount();
+        return totalAmount - discountAmount;
+    }
+}
+Client Class
+import java.util.Arrays;
+
+public class Client {
+    public static void main(String[] args) {
+        Product product1 = new Product("Shirt", 1000);
+        Product product2 = new Product("Pants", 1500);
+        Product product3 = new Product("Shoes", 2000);
+
+        RegularCustomer regularCustomer = new RegularCustomer(Arrays.asList(product1, product2, product3));
+        PrivilegedCustomer privilegedCustomer = new PrivilegedCustomer(Arrays.asList(product1, product2, product3));
+
+        System.out.println("Regular Customer Purchase Amount: " + regularCustomer.calculatePurchaseAmount());
+        regularCustomer.chargeOnDelivery();
+
+        System.out.println("Privileged Customer Purchase Amount: " + privilegedCustomer.calculatePurchaseAmount());
+        privilegedCustomer.chargeOnDelivery();
+    }
+}
+
+
+6: import java.util.Scanner;
+
+public class PasswordGenerator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the name:");
+        String name = scanner.nextLine();
+
+        if (name.length() < 3) {
+            System.out.println("The name should contain a minimum of 3 characters.");
+            return;
+        }
+
+        char lc = name.charAt(name.length() - 1); // last character
+        int le = name.length(); // length of the name
+        char fc = name.charAt(0); // first character
+        String password;
+
+        if (le % 2 == 0) {
+            password = lc + String.valueOf(le) + "@" + fc + "654" + lc;
+        } else {
+            password = lc + String.valueOf(le) + "!" + fc + "432" + lc;
+        }
+
+        System.out.println("Generated Password: " + password);
+    }
+}
+
