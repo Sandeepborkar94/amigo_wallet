@@ -1,0 +1,228 @@
+			Java Beyond Basics
+			
+Day - 1:
+--------
+-> Functional Interfaces
+-> Lambda Expressions
+-> Stream API
+
+Day - 2:
+--------
+-> Parallel Streams
+-> Optional class
+-> Serialization
+
+Day-3:
+------
+-> Annotations
+-> File Systems
+-> Multithreading
+-> Java9 Modularity
+****************************************************************************************
+									Day-3
+									-----
+Annotations:
+------------
+1) Comments
+      // -> Singleline comment
+	  /*
+	  
+	  ..
+	  
+	  */ Multiline comments
+	
+	Scope: Source Code
+	
+2) XML
+	  Configurations enclosed in a set of tags
+	  <xml meta-inf>
+	  <xml>
+	  <head>
+		<title>
+		</title>
+		:
+	  </head>
+	</xml>
+	
+	Scope: Source code, Compilation, Run-time
+	
+	Learn a new technology (XML)
+	Tags should be valid (each tag should be having opening and closing) and 
+	         well-formed (in a proper structure only we have to open and close)
+	XML tags occupies more memory and hence heavy-weighted applications/programs are generating
+	
+3) Annotations:
+- Introduced in Java 5 version
+- Using annotations, providing information to either compiler or JVM without modifying the flow of programs
+  Meta-information 
+  
+		@Value(min = 18, max=60)
+		Integer age;
+		
+		@Override
+		public void show()
+		{
+			// statements
+		}
+- Annotations are able to import some functionalities into our application 
+        @Entity
+		@Id
+		@SpringBootApplication
+- How to use annotations
+		@Annotation_name[(attribute(s)]
+		@Entity
+		
+		W.r.t number of attributes, Annotations categorized as three ways:
+		@Entity     -> Marker annotations
+		@Column(name="empId")  -> Single-valued annotations
+		@Value(min = 18, max = 60)  -> Multi-valued annotations
+		
+- Types of Annotations: Standard and Custom
+	Standard: General-purpose and Meta annotations
+
+- General-purpose:
+	Used very frequently
+	Defined under java.lang package
+	Alone
+	Examples: @Override
+			  @Deprected
+			  @SupressWarnings
+			  @SafeVarArgs 	
+	          @FunctionalInterface
+			  
+- Meta annotations:
+	Based on the criteria (rarely)
+	Defined under java.lang.annotations package, so need to import
+	We have use this type of annotations along with custom annotations
+	Examples: @Inherited (inheritance)
+			  @Repeatable (Array of annotations)
+			  @Target (Var, method, pack, interface, enum, class)
+			  @Documented (Generates)
+			  @Retention (SOURCE, CLASS, RUNTIME)
+
+- Custom annotations
+	
+	public @interface Annotation_name
+	{
+		datatype attribute_name([default value])
+		:
+		:
+	}
+	
+	public @interface Course
+	{
+		String cName();
+		int cost(default 1200);
+	}
+	
+	@Course(cName="Java Basics", cost=5000) // Variable, method, class, package
+	@Configuration
+	
+Java 1 java.util.Date (Deprecated)
+Java 8 java.time	
+
+int a, b, c;
+List list = new ArrayList(); // Generic 
+
+Heap-pollution: Stack and Heap
+
+Student s = new Student();
+
+Unused Objects in heap without reclaiming the space: Heap-pollution
+s = null;
+************************************************************************************************
+
+Student s = new Student(1,"Gowrinath","ETA");
+?
+Once I turnoff my server/program/application, will the data stored in Student?
+
+All Stack and Heap memory comes under RAM
+
+Persistence storage ->  File Systems  -> JDBC -> Spring JDBC -> ORM -> Spring DATA
+
+To retrieve the data in future, we can store it in files
+
+java.io packages
+
+File attribute related -> java.io.File
+To display the details of a class-> In command propmt use, 
+	    javap Fully Qualified Packagename.className
+		javap java.io.File
+
+FileWriter / FileOutputStream is having limitations:
+-> To store the data in next line use \n (Some java compilers won't consider \n as new line)
+-> There is no method to store other data types
+
+FileReader / FileInputStream is having a limitation:
+-> It uses read method only which reads only a single character at a time
+	1000 phone * 10 digits = 10000 read operations
+
+FileReader with BufferedReader:
+using readLine()
+1000 phone * 1 read line with all 10 digits = 1000 read operations
+***************************************************************************************
+Multithreading:
+
+Thread states: New, Runnable, Running, Blocked, Termination (Thread life-cycle)
+
+The execution of a Thread program is not under control of developer, but under OS.
+
+To make the thread execution in developer control - Thread priorities, join(), yield(), sleep(), suspend(), 
+ 
+					synchronized - wait(), notify() and notifyAll()
+				
+synchronized implemented - synchronized methods and synchronized blocks
+
+Other threads should have to waiting (Long waiting time in queues - Starvation -> dead lock)
+public void synchronized deposit()
+{
+  		Deducting amoung from your account
+		adding the same into your friend's account
+}
+
+public void deposit()
+{
+	Statements;
+	synchronized
+	{
+		statements
+	}
+}
+
+	Locking
+	Volatile atomic
+	Concurrent collections
+
+Implementing Threads:
+1) extends Thread class
+	
+		public class ThreadEx extends Thread
+		{
+			public void run(){}  // Not a mandatory
+		}
+2) implementing Runnable interface
+		public class ThreadEx extends XYZ implements Runnable
+		{
+			ThreadEx t1 = new ThreadEx();
+			public void run()
+			{
+			}
+		}
+
+Runnable Limitations:
+
+-> Unable to return any value from run()
+-> Never throws any exception by default
+-> There is no reusability of threads
+
+Callable interface (Executor Framework):
+-> V call()
+-> throws exceptions
+-> reused (ThreadPool)
+-> Singlethread, ScheduledThread, FixedThread
+
+**********************************************************************************
+
+Java Modularity:
+- Introduced in 9th version of Java
+- 
