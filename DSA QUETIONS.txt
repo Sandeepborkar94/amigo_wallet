@@ -1,0 +1,410 @@
+DSA: QUETIONS
+
+1 : What is the best-suited condition for using linear search algorithm?
+ 
+Ans:  When the array contains only few elements // correct answer
+
+2: Choose the correct option based on the execution of the code given below.
+public class Tester
+ {
+	public static void main(String args[]) 
+{
+		List<Integer> elements = new LinkedList<Integer>();
+		elements.add(10);
+		elements.add(12);
+		elements.add(33);
+		elements.add(44);
+		elements.add(75);
+		elements.add(67);
+		int temp = 0;
+		int sum = 0;
+		for (int element : elements) {
+			temp = element;
+			while (temp != 0) {
+				sum += temp % 10;
+				temp = temp / 10;
+			}
+			if (sum % 2 == 0) {
+				System.out.println("Infosys");
+			}
+		}
+	}
+}
+ 
+Ans:  "Infosys" will be displayed 3 times //correct answer
+
+3: What is the time complexity of bubble sort algorithm?
+
+Ans :O(n*n)
+
+4: What will be the output of the code given below?
+Assumption: Stack class is already implemented with all the required methods.
+
+public class Tester {
+	public static void main(String args[]) {
+		Stack stack = new Stack(10);
+		stack.push(18);
+		stack.push(10);
+		stack.push(24);
+		stack.push(56);
+		stack.push(27);
+		operate(stack);
+		stack.display();
+	}
+	public static void operate(Stack stack) {
+		for (int i = 0; i <= 2; i++) {
+			if (stack.pop() % 3 == 0) {
+				int temp = stack.pop();
+				stack.push(++temp);
+				stack.push(++temp);
+			}
+		}
+	}
+}
+
+Ans : (Top -> Bottom) 26 25 10 18.
+
+4: What will be the output of the code given below?
+
+Assumption: Queue class is already implemented with all the required methods.
+
+public class Tester {
+	public static void main(String args[]) {
+		Queue queue = new Queue(10);
+		operate(queue);
+		queue.display();
+	}
+	public static void operate(Queue queue) {
+		int[] numbers = { 12, 18, 17, 16, 28, 34, 36 };
+		int count = 6;
+		for (int number: numbers) {
+			if (count == 0) {
+				break;
+			}
+			if (number%count == 0) {
+				queue.enqueue(number);
+			}
+			--count;
+		}
+	}
+}
+
+Ans : output of the code will be:
+
+12 28 34.
+
+5: Which of the asymptotic notations is used to represent the best-case analysis of an algorithm?
+
+Ans :
+The asymptotic notation used to represent the best-case analysis of an algorithm is:
+
+Big Omega (Ω)
+
+Big Omega notation provides a lower bound on the running time of an algorithm, representing the best-case scenario.
+
+6: What will be the output of the code given below?
+
+public class Tester {
+	public static void main(String[] args) 
+	{
+		Set<String> treeSet = new TreeSet<String>();
+		treeSet.add(new String("A"));
+		treeSet.add(new String("B"));
+		treeSet.add(new String("C"));
+		treeSet.add(new String("C"));
+		treeSet.add(new String("E"));
+		treeSet.add(new String("D"));
+		treeSet.add(new String("a"));
+		treeSet.add(new String("F"));
+		Object[] elements = treeSet.toArray();
+		for (Object element : elements)
+			System.out.print(element + " ");
+	}
+}
+
+Sol:  A TreeSet is created, which stores elements in a sorted order and does not allow duplicates.
+
+Note that uppercase letters come before lowercase letters in Unicode
+
+Ans:  the output of the code will be:
+
+A B C D E F a
+
+7: What will be the output of the code given below?
+
+public class Tester {
+	public static void main(String args[]) 
+	{
+		List<Integer> elements = new LinkedList<Integer>();
+		elements.add(1);0 
+		elements.add(2);1 //removed
+		elements.add(3);2
+		elements.add(4);3 // 34 now
+		elements.add(5);4
+		elements.add(6);5 // 15 now
+		elements.remove(1);
+		elements.add(3, 34);
+		elements.set(5, 15);
+		System.out.println(elements);
+	}
+}
+
+Ans: [1, 3, 4, 34, 5, 15].
+
+8: What will be the output of the code given below?
+
+Assumption: Stack class is already implemented with all the required methods.
+
+public class Tester {
+	public static void main(String args[])
+ {
+		Stack stack = new Stack(10);
+        	stack.push(11);
+		stack.push(19);
+		stack.push(18);
+		stack.push(20);
+		stack.push(15);
+		stack.push(13);
+		stack.push(17);
+		System.out.println(operate(stack));
+	}
+	public static int operate(Stack stack) {
+		int value = 0;
+		while (!stack.isEmpty()) {
+			if (stack.peek() % 2 != 0) {
+				value += stack.pop();
+				stack.pop();
+			} else {
+				stack.pop();
+			}
+		}
+		return value;
+	}
+}
+
+Ans: 51
+
+9: Choose the correct option based on the execution of the code given below.
+
+public class Tester 
+{
+	public static void main(String args[]) 
+	{
+		Map<String, Integer> studentDetails = new HashMap<String, Integer>();
+		studentDetails.put("Max", 337);
+		studentDetails.put("Stocks", 480);
+		studentDetails.put("Malinda", 570);
+		studentDetails.put("Mathew", 640);
+		studentDetails.put("Max", 340);
+
+		if (studentDetails.replace("stocks", 480, 650)) {
+			studentDetails.remove("Max");
+		} else {
+			studentDetails.put("Sam", 490);
+		}
+		System.out.println(studentDetails);
+	}
+}
+
+Ans: 
+
+the output of the code will be:
+
+{Max=340, Stocks=480, Malinda=570, Mathew=640, Sam=490}.
+
+
+10: What will be the output of the code given below?
+
+public class Tester {
+	public static void main(String[] args)
+	 {
+		Set<String> linkedHashSet = new LinkedHashSet<String>();
+		linkedHashSet.add(new String("A"));
+		linkedHashSet.add(new String("B"));
+		linkedHashSet.add(new String("C"));
+		linkedHashSet.add(new String("C"));
+		linkedHashSet.add(new String("E"));
+		linkedHashSet.add(new String("D"));
+		linkedHashSet.add(new String("E"));
+		linkedHashSet.add(null);
+
+		linkedHashSet.add(new String("E")); //dups not allowed
+
+		Object[] elements = linkedHashSet.toArray();
+
+		for (Object element : elements)
+			System.out.print(element + " ");
+	}
+}
+
+Ans: A B C E D null (also maintaines insertion order)
+
+11: Choose the correct option based on the execution of the code given below.
+public class Tester
+ {
+	public static void main(String[] args) {
+		Deque<String> brands = new ArrayDeque<String>();
+		
+		brands.add("Apple");
+		brands.add("Samsung");
+		brands.add("One Plus");
+		brands.add("Nokia");
+		brands.add("Blueberry");
+		
+		brands.poll(); // Removes "Apple" (head of the deque).
+		brands.add("Microsoft"); //Adds "Microsoft" to the end.
+
+		brands.element(); //Retrieves, but does not remove, the head ("Samsung").
+
+		brands.peek(); Retrieves, but does not remove, the head ("Samsung").
+		brands.remove(); // Removes "Samsung" (head of the deque).
+
+		for (String brand: brands) {
+			System.out.println(brand);
+		}
+	}
+}
+
+Ans: 
+
+One Plus
+Nokia
+Blueberry
+Microsoft
+
+13: What is the time complexity of the code given below?
+
+int number1 = 0, counter = 10; 
+while (counter  > 0) { 
+    number1+=counter; 
+    counter/=2; 
+}
+
+Ans: O(log n), where n is the initial value of counter.
+
+14: How many minimum numbers of stacks are needed to implement a queue?
+
+Ans: 2 stacks
+
+This is because one stack is used for enqueue operations (pushing elements onto the stack), and the other stack is used for dequeue operations (popping elements from the stack). By transferring elements between the two stacks, you can achieve the FIFO (First In, First Out) behavior of a queue
+
+15: Which of the given algorithmic approach tries to achieve a localized optimum solution?
+
+Ans: Greedy approach
+
+The greedy approach makes a series of choices, each of which looks best at the moment, with the hope that these local optimum solutions will lead to a global optimum solution.
+
+16: Consider an array, arr ={12,16,17,19,23,35,40}.
+
+How many iterations are required to search 23 using binary search algorithm?
+
+Ans: 3 iteration
+
+17: What will be the output of the code given below?
+
+public class Tester {
+	public static void main(String[] args)
+	 {
+		List<String> employees = new ArrayList<String>();
+		employees.add("Alex");
+		employees.add("Tom");
+		employees.add("Sam");
+		employees.add("john");
+		employees.add("Jack");
+
+		//Initial List: ["Alex", "Tom", "Sam", "john", "Jack"]
+		
+		updateEmployee(employees);
+
+		for (String employee: employees) {
+			System.out.print(employee+" ");
+		}
+	}
+	public static void updateEmployee(List<String> employees)
+ {
+		String[] newEmployees = { "John", "Jack", "Robert", "Steve" };
+		for (int counter = 0; counter <= newEmployees.length - 1; counter++) {
+			if (!employees.contains(newEmployees[counter])) {
+				employees.add(counter + 1, newEmployees[counter]);
+			}
+		}
+	}
+}
+
+Ans: Alex John Tom Robert Steve Sam john Jack
+
+18: What will be the output of the code given below?
+
+class Tester
+{
+	public static void main(String args[])
+	{
+		char arr[]=new char[4];
+		arr[0]='A';
+		arr[1]='S';
+		arr[2]='D';
+		arr[3]='F';		
+		
+		ArrayTest.insert(arr, 4, 'J');
+
+		for(int index=0;index<arr.length;index++)
+			System.out.println(arr[index]);
+	}
+}
+ArrayTest class is given below.
+
+class ArrayTest
+ {
+	
+	public static void insert(char[] ar, int pos, char val){
+	    
+		for(int index=ar.length-1;index>=pos;index--) {	  
+			ar[index]=ar[index-1];
+		}
+		
+		ar[pos-1]=val;
+	}
+}
+
+Ans: Final Array: ['A', 'A', 'S', 'J']
+
+19: What will be the output of the code given below?
+Assumption: LinkedList class is already implemented with all the required methods.
+
+public class Tester {
+	public static void main(String args[]) {
+		LinkedList list = new LinkedList();
+		list.addAtEnd("11");
+		list.addAtEnd("13");
+		list.addAtEnd("18");
+		list.addAtEnd("34");
+		list.addAtEnd("46");
+		operate(list);
+		list.display();
+	}
+	public static void operate(LinkedList list ) {
+		Node temp = list.getHead(); //list.getHead(); initializes temp to the head of the list (11).
+		while (temp.getNext().getNext() != null) {
+			temp.setData(temp.getNext().getData());
+			temp = temp.getNext();
+		}
+	}
+}
+
+Ans: 13 -> 18 -> 34 -> 34 -> 46
+
+20: What will be the output of the code given below?
+public class Tester
+ {
+	public static void main(String args[]) {
+		Map<Integer, Integer> hashMap = new HashMap<Integer, Integer>();
+		for (int counter1 = 0; counter1 <= 5; counter1++) {
+			for (int counter2=5; counter2>=1; counter2--) {
+				hashMap.put(counter1,counter2);
+			}
+		}
+		System.out.println(hashMap);
+	}
+}
+
+Ans: {0=1, 1=1, 2=1, 3=1, 4=1, 5=1}
